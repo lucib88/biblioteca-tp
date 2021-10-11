@@ -1,0 +1,10 @@
+GET http://localhost:3000/libros
+
+###
+GET http://localhost:3000/libros/60c248369a0bca22d82a8bcf
+
+###
+GET http://localhost:3000/libros?_page=2&_limit=5&_sort=nombre,id
+
+###
+GET http://localhost:3000/libros?nombre_like=la&autor.nombre_like=Ernest

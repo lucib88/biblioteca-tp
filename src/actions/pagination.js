@@ -1,0 +1,5 @@
+export const ACTIONS = {
+    SET_PARAMS: "SET_PARAMS",
+    SET_PAGE: "SET_PAGE",
+    SET_ROW_PER_PAGE: "SET_ROW_PER_PAGE",
+};
