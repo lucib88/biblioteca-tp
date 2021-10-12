@@ -27,7 +27,7 @@
       },
       "nombre": "2001 Una Odisea Espacial",
       "ubicacion": "4-2",
-      "descripcion": "",
+      "descripcion": "Una odisea",
       "id": "60c248379a0bca22d82a8bd1"
     },
     {
@@ -339,16 +339,6 @@
       "ubicacion": "4-1",
       "descripcion": "",
       "id": "60c24a7301924333d8bd6fd3"
-    },
-    {
-      "autor": {
-        "nombre": "Gary Jennings",
-        "id": "60c2461a9a0bca22d82a8aee"
-      },
-      "nombre": "Azteca",
-      "ubicacion": "3-2",
-      "descripcion": "",
-      "id": "60c24a7301924333d8bd6fd4"
     },
     {
       "autor": {
@@ -5049,6 +5039,26 @@
       "ubicacion": "1-2",
       "descripcion": "",
       "id": "60c24b2201924333d8bd71aa"
+    },
+    {
+      "id": "-1vdDjTun",
+      "nombre": "Los fuegos",
+      "autor": {
+        "nombre": "Adalberto Ortiz",
+        "id": "60c2461a9a0bca22d82a8a86"
+      },
+      "descripcion": "Nuevo libros",
+      "ubicacion": "4-2"
+    },
+    {
+      "id": "t7rIpWJ",
+      "nombre": "Nombre",
+      "autor": {
+        "nombre": "Alain Fournier",
+        "id": "60c2461a9a0bca22d82a8a88"
+      },
+      "descripcion": "desc",
+      "ubicacion": "4-2"
     }
   ],
   "autores": [
@@ -5065,7 +5075,7 @@
       "id": "60c2461a9a0bca22d82a8a86"
     },
     {
-      "nombre": "Agustin Ya�ez",
+      "nombre": "Agustin Yañez",
       "id": "60c2461a9a0bca22d82a8a87"
     },
     {
@@ -5237,7 +5247,7 @@
       "id": "60c2461a9a0bca22d82a8ab1"
     },
     {
-      "nombre": "Carlos Levi",
+      "nombre": "Carlos Levis",
       "id": "60c2461a9a0bca22d82a8ab2"
     },
     {

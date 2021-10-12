@@ -12,7 +12,7 @@ const removeParameters = {
     contenido: 'Confirme que desea borrar el libro seleccionado'
 };
 
-export const LibroRow = ({ libro, handleDelete }) => {
+const LibroRow = ({ libro, handleDelete }) => {
     const { nombre, autor, ubicacion, id } = libro;
 
     return <TableRow key={id}>
@@ -30,3 +30,5 @@ export const LibroRow = ({ libro, handleDelete }) => {
         </TableCell>
     </TableRow>
 }
+
+export default LibroRow;

@@ -1,5 +1,3 @@
-const Libro = () => {
-    return <h1>Editar libro</h1>
-}
+import Libro from "./Libro"
 
 export default Libro;

@@ -1,22 +1,43 @@
 import { ACTIONS } from "../actions/search";
 
 export const initialState = {
+    page: 0,
+    rowsPerPage: 10,
+    params: {},
     loading: true,
     error: false,
-    data: {},
+    data: null,
+    total: 0
 };
 
-// ...action: ({type : ACTIONS.SET_DATA, payload : {info : ... , results : ...}})
 export const searchReducer = (state = initialState, action) => {
     switch (action.type) {
+        case ACTIONS.SET_PARAMS:
+            return {
+                ...state,
+                page: 0,
+                loading: false,
+                error: false,
+                params: action.payload,
+            };
+        case ACTIONS.SET_ROW_PER_PAGE:
+            return {
+                ...state,
+                rowsPerPage: action.payload,
+                page: 0,
+            };
+        case ACTIONS.SET_PAGE:
+            return {
+                ...state,
+                page: action.payload,
+            };
         case ACTIONS.SET_DATA:
             return {
                 ...state,
                 loading: false,
-                data: {
-                    total: action.payload.total,
-                    results: action.payload.results,
-                },
+                error: false,
+                total: action.payload.total || 0,
+                data: action.payload.result,
             };
         case ACTIONS.SET_LOADING:
             return {

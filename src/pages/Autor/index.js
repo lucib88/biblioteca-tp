@@ -1,5 +1,3 @@
-const Autor = () => {
-    return <h1>Editar autor</h1>
-}
+import Autor from "./Autor";
 
-export default Autor;
+export default Autor

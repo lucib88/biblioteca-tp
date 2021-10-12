@@ -6,7 +6,6 @@ import AlertDialog from './AlertDialog';
 export default function IconButtonRemove({ elemento, handleDelete, accion, pregunta, contenido }) {
     const [open, setOpen] = useState(false);
 
-
     const handleCloseDialog = () => {
         setOpen(false);
     }

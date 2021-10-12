@@ -7,39 +7,33 @@ import { Link } from "react-router-dom";
 
 export const emptyParametros = {
     nombre: '',
-    ubicacion: '',
-    autor: ''
 }
 
-const LibrosSearch = ({ dispatch, loading = false }) => {
+const AutoresSearch = ({ dispatch, loading = false }) => {
     const [parametros, setParametros] = useState(emptyParametros);
 
     const handleChangeEvent = ({ target: { name, value } }) => {
-        handleChange(name, value);
-    }
-
-    const handleChange = (name, elemento) => {
         setParametros((prevParametros) => {
             return {
                 ...prevParametros,
-                [name]: elemento
+                [name]: value
             }
         })
-    };
+    }
 
     const handleCreate = e => {
         e.preventDefault()
         dispatch({ type: ACTIONS.SET_PARAMS, payload: parametros });
     }
 
-    const { nombre, ubicacion, autor } = parametros;
+    const { nombre } = parametros;
     return (
         <CardContent>
             <form autoComplete="off" onSubmit={handleCreate}>
 
                 <Grid container spacing={3}>
 
-                    <Grid item xs={4}>
+                    <Grid item xs={9}>
                         <TextField
                             id="nombre"
                             label="Nombre"
@@ -49,27 +43,7 @@ const LibrosSearch = ({ dispatch, loading = false }) => {
                             onChange={handleChangeEvent}
                         />
                     </Grid>
-                    <Grid item xs={3}>
-                        <TextField
-                            id="autor"
-                            label="Autor"
-                            name="autor"
-                            value={autor}
-                            fullWidth
-                            onChange={handleChangeEvent}
-                        />
-                    </Grid>
 
-                    <Grid item xs={2}>
-                        <TextField
-                            id="ubicacion"
-                            label="Ubicacion"
-                            name="ubicacion"
-                            value={ubicacion}
-                            fullWidth
-                            onChange={handleChangeEvent}
-                        />
-                    </Grid>
 
                     <Grid item xs={3}>
                         <Button
@@ -84,7 +58,7 @@ const LibrosSearch = ({ dispatch, loading = false }) => {
 
                         <Button
                             component={Link}
-                            to="/libros/add"
+                            to="/autores/add"
                             color='primary'
                             size='large'
                             style={{ marginLeft: 5 }}
@@ -101,4 +75,4 @@ const LibrosSearch = ({ dispatch, loading = false }) => {
     )
 }
 
-export default LibrosSearch;
+export default AutoresSearch;
