@@ -5,12 +5,14 @@ import { Save } from '@material-ui/icons';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { useEffect, useState } from "react";
 import { getAll } from "../../services/apiServices";
+import { useSelector } from "react-redux";
 
 const ubicaciones = ["1-2", "2-2", "4-2", "5", "casa"];
 
 const LibroForm = () => {
     const { values, touched, errors, handleChange, handleBlur, setFieldValue, isSubmitting, isValid } = useFormikContext();
     const [autores, setAutores] = useState([]);
+    const disabled = useSelector(state => !state?.nombre)
 
     useEffect(() => {
         getAll("autores").then(({ data }) => {
@@ -26,6 +28,7 @@ const LibroForm = () => {
                     name="nombre"
                     fullWidth
                     label="Nombre"
+                    disabled={disabled}
                     value={values.nombre}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -45,6 +48,7 @@ const LibroForm = () => {
                     name="autor"
                     value={values.autor}
                     autoSelect={true}
+                    disabled={disabled}
                     autoHighlight={true}
                     onBlur={handleBlur}
                     getOptionSelected={(option, value) => option.id === value.id}
@@ -71,6 +75,7 @@ const LibroForm = () => {
                         value={values.ubicacion}
                         onBlur={handleBlur}
                         onChange={handleChange}
+                        disabled={disabled}
                         label="Ubicación">
                         {ubicaciones.map((ubicacion) => {
                             return (
@@ -93,6 +98,7 @@ const LibroForm = () => {
                     label="Descripción"
                     value={values.descripcion}
                     onChange={handleChange}
+                    disabled={disabled}
                     variant="outlined"
                     multiline
                     rows={4}
@@ -106,7 +112,7 @@ const LibroForm = () => {
                     variant="contained"
                     type="submit"
                     size="large"
-                    disabled={!isValid || isSubmitting}
+                    disabled={disabled || !isValid || isSubmitting}
                     startIcon={isSubmitting ? <CircularProgress size="0.8rem" /> : <Save />}
                 >
                     {isSubmitting ? "Guardando" : "Guardar"}

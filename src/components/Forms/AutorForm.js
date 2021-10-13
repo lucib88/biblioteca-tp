@@ -2,11 +2,12 @@ import { Grid, Button, TextField } from "@material-ui/core";
 import { useFormikContext } from "formik";
 import { CircularProgress } from '@material-ui/core'
 import { Save } from '@material-ui/icons';
+import { useSelector } from "react-redux";
 
 const AutorForm = () => {
     const { values, errors, touched, handleChange, handleBlur, isSubmitting, isValid } = useFormikContext();
+    const disabled = useSelector(state => !state?.nombre)
 
-    console.log(touched, errors);
     return (
         <Grid container spacing={3}>
             <Grid item xs={12}>
@@ -15,6 +16,7 @@ const AutorForm = () => {
                     name="nombre"
                     fullWidth
                     label="Nombre"
+                    disabled={disabled}
                     value={values.nombre}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -31,7 +33,7 @@ const AutorForm = () => {
                     variant="contained"
                     size="large"
                     type="submit"
-                    disabled={!isValid || isSubmitting}
+                    disabled={disabled || !isValid || isSubmitting}
                     startIcon={isSubmitting ? <CircularProgress size="0.8rem" /> : <Save />}
                 >
                     {isSubmitting ? "Guardando" : "Guardar"}

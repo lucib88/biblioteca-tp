@@ -12,7 +12,7 @@ const removeParameters = {
     contenido: 'Confirme que desea borrar el libro seleccionado'
 };
 
-const LibroRow = ({ libro, handleDelete }) => {
+const LibroRow = ({ libro, handleDelete, disabled = false }) => {
     const { nombre, autor, ubicacion, id } = libro;
 
     return <TableRow key={id}>
@@ -24,8 +24,10 @@ const LibroRow = ({ libro, handleDelete }) => {
                 <IconButton aria-label="Editar" color="primary" component={Link} to={`/libros/${id}`}>
                     <Edit fontSize="small" />
                 </IconButton>
-                <IconButtonRemove elemento={libro} handleDelete={handleDelete} {...removeParameters}>
-                </IconButtonRemove>
+                {!disabled &&
+                    <IconButtonRemove elemento={libro} handleDelete={handleDelete} {...removeParameters}>
+                    </IconButtonRemove>
+                }
             </>
         </TableCell>
     </TableRow>

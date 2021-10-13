@@ -1,5 +1,4 @@
 const loggedReducer = (state = {}, action) => {
-  console.log(action);
   switch (action.type) {
     case "SIGN_IN":
       return action.payload;

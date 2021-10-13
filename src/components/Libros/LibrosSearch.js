@@ -11,7 +11,7 @@ export const emptyParametros = {
     autor: ''
 }
 
-const LibrosSearch = ({ dispatch, loading = false }) => {
+const LibrosSearch = ({ dispatch, loading = false, disabled = false }) => {
     const [parametros, setParametros] = useState(emptyParametros);
 
     const handleChangeEvent = ({ target: { name, value } }) => {
@@ -82,16 +82,18 @@ const LibrosSearch = ({ dispatch, loading = false }) => {
                             {loading ? "Buscando" : "Buscar"}
                         </Button>
 
-                        <Button
-                            component={Link}
-                            to="/libros/add"
-                            color='primary'
-                            size='large'
-                            style={{ marginLeft: 5 }}
-                            variant="contained"
-                            startIcon={<Add />}>
-                            NUEVO
-                        </Button>
+                        {!disabled &&
+                            <Button
+                                component={Link}
+                                to="/libros/add"
+                                color='primary'
+                                size='large'
+                                style={{ marginLeft: 5 }}
+                                variant="contained"
+                                startIcon={<Add />}>
+                                NUEVO
+                            </Button>
+                        }
                     </Grid>
 
                 </Grid>

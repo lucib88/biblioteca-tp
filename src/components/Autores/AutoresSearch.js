@@ -9,7 +9,7 @@ export const emptyParametros = {
     nombre: '',
 }
 
-const AutoresSearch = ({ dispatch, loading = false }) => {
+const AutoresSearch = ({ dispatch, loading = false, disabled = false }) => {
     const [parametros, setParametros] = useState(emptyParametros);
 
     const handleChangeEvent = ({ target: { name, value } }) => {
@@ -56,7 +56,7 @@ const AutoresSearch = ({ dispatch, loading = false }) => {
                             {loading ? "Buscando" : "Buscar"}
                         </Button>
 
-                        <Button
+                        {!disabled && <Button
                             component={Link}
                             to="/autores/add"
                             color='primary'
@@ -66,6 +66,7 @@ const AutoresSearch = ({ dispatch, loading = false }) => {
                             startIcon={<Add />}>
                             NUEVO
                         </Button>
+                        }
                     </Grid>
 
                 </Grid>

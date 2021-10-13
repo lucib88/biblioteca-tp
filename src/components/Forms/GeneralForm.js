@@ -4,12 +4,15 @@ import { Loading, Snackbar } from "../common";
 import { save } from "../../services/apiServices";
 import useSnackbar, { SEVERITY } from '../../hooks/useSnackbar';
 import useGet from "../../hooks/useGet";
+import { Alert } from "@material-ui/lab";
+import { useSelector } from "react-redux";
 
 const GeneralForm = ({ children, url, goBackUrl, emptyValues, validationSchema }) => {
     const history = useHistory();
     const { id } = useParams();
     const { data, loading, error } = useGet(url, id, emptyValues);
     const { message, handleClose, openMessage } = useSnackbar(error);
+    const disabled = useSelector(state => !state?.nombre)
 
     const handleCreate = (values, { setSubmitting }) => {
         save(url, values)
@@ -29,6 +32,11 @@ const GeneralForm = ({ children, url, goBackUrl, emptyValues, validationSchema }
 
     return (
         <>
+
+            {disabled && <Alert variant="outlined" severity="warning" style={{ marginBottom: '20px' }}>
+                Solo usuarios registrados pueden modificar los datos
+            </Alert>
+            }
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
