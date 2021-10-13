@@ -14,7 +14,12 @@ const titulos = {
   "/autores": "Buscar autor",
   "/autores/add": "Agregar autor",
   "/libros/id": "Editar libro",
-  "/autores/id": "Editar autor"
+  "/autores/id": "Editar autor",
+  "/usuarios/login": "Iniciar sesión",
+  "/usuarios/logout": "Iniciar sesión",
+  "/usuarios/login/new": "Iniciar sesión",
+  "/usuarios/add": "Registrarse",
+  "/": "Buscar libros"
 }
 
 export default function Header({ handleDrawerOpen, open }) {
@@ -25,7 +30,7 @@ export default function Header({ handleDrawerOpen, open }) {
   useEffect(() => {
     const pathName = location.pathname;
     const id = matchPath(pathName, { path: "/:nombre/:id" })?.params?.id;
-    const path = id !== 'add' ? pathName.replace(id, 'id') : pathName;
+    const path = id !== 'add' && id !== 'login' && id !== 'logout' ? pathName.replace(id, 'id') : pathName;
     setTitulo(titulos[path])
 
   }, [location]);

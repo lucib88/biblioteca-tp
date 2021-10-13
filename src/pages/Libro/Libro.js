@@ -8,7 +8,6 @@ const Libro = () => {
             goBackUrl="/libros"
             emptyValues={initialState}
             validationSchema={validationSchema}>
-
             <LibroForm />
 
         </GeneralForm>

@@ -8,17 +8,18 @@ const useStyles = makeStyles((theme) => ({
     '& > * + *': {
       marginTop: theme.spacing(2),
     },
+    marginBottom: theme.spacing(4)
   },
 }));
 
-export default function Error() {
+export default function AlertMessage({ severity = "error", title = "Error", message = "Hubo un error al cargar los datos." }) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <Alert severity="error">
-        <AlertTitle>Error</AlertTitle>
-        Hubo un error al cargar los datos. 
+      <Alert severity={severity}>
+        <AlertTitle>{title}</AlertTitle>
+        {message}
       </Alert>
     </div>
   );

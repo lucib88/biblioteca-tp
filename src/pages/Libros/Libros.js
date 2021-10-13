@@ -1,7 +1,7 @@
 import useSnackbar, { SEVERITY } from '../../hooks/useSnackbar';
 import { useSearch } from "../../hooks/useSearch"
 import { TableSearch } from "../../components/Table"
-import { Snackbar, Error } from "../../components/common"
+import { Snackbar, AlertMessage } from "../../components/common"
 import { LibrosSearch, LibroRow, columnas } from "../../components/Libros";
 import { remove } from '../../services/apiServices';
 
@@ -22,7 +22,7 @@ export default function Libros() {
         <>
             <LibrosSearch dispatch={dispatch} loading={loading} />
 
-            {error && <Error />}
+            {error && <AlertMessage />}
 
             {libros && <TableSearch
                 columnas={columnas}

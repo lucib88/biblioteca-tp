@@ -1,6 +1,6 @@
 import { useSearch } from "../../hooks/useSearch"
 import { TableSearch } from "../../components/Table"
-import { Error } from "../../components/common"
+import { AlertMessage } from "../../components/common"
 import { AutoresSearch, AutorRow, columnas } from "../../components/Autores";
 
 export default function Autores() {
@@ -10,7 +10,7 @@ export default function Autores() {
         <>
             <AutoresSearch dispatch={dispatch} loading={loading} />
 
-            {error && <Error />}
+            {error && <AlertMessage />}
 
             {autores && <TableSearch
                 columnas={columnas}

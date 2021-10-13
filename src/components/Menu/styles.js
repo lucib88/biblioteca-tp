@@ -31,6 +31,11 @@ export const useStyles = makeStyles((theme) => ({
     hide: {
         display: 'none',
     },
+    nameLeft: {
+        alignItems: 'center',
+
+        padding: theme.spacing(2, 2),
+    },
     drawer: {
         width: drawerWidth,
         flexShrink: 0,

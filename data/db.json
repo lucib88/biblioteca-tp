@@ -1,4 +1,21 @@
 {
+  "usuarios": [
+    {
+      "id": 1,
+      "nombre": "Luciana",
+      "apellido": "Bertona",
+      "username": "luciana",
+      "email": "lucib88@hotmail.com",
+      "password": "lucianaber254"
+    },
+    {
+      "id": 2,
+      "nombre": "Luciana",
+      "apellido": "Bertona",
+      "email": "luci@hotmail.com",
+      "password": "luci1988"
+    }
+  ],
   "libros": [
     {
       "autor": {

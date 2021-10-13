@@ -9,6 +9,8 @@ import MenuBookIcon from '@material-ui/icons/MenuBook';
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import { useSelector } from "react-redux";
 import { useStyles } from "./styles"
 import { useTheme } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
@@ -31,6 +33,8 @@ export default function MenuItems({ handleDrawerClose, open }) {
     const classes = useStyles();
     const theme = useTheme();
 
+    const usuarioLogeado = useSelector(state => state)
+
     return <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -47,9 +51,21 @@ export default function MenuItems({ handleDrawerClose, open }) {
         </div>
         <Divider />
 
+
         <List>
             <MenuItem titulo="Libros" url="/libros" icon={MenuBookIcon} />
             <MenuItem titulo="Autores" url="/autores" icon={EmojiPeopleIcon} />
+
+            {usuarioLogeado?.nombre &&
+                <MenuItem titulo="Cerrar sesión" url="/usuarios/logout" icon={AccountBoxIcon} />
+            }
+
+            {!usuarioLogeado?.nombre &&
+                <MenuItem titulo="Iniciar sesión" url="/usuarios/login" icon={AccountBoxIcon} />
+            }
+
+
+
         </List>
 
 

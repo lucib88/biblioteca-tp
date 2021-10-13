@@ -36,8 +36,17 @@ const getAll = (url) => {
 }
 
 const getAllByNombre = (url, nombre) => {
-    return API.get(`${url}?nombre_like=${encodeURIComponent(nombre)}&_sort=nombre,id`);
+    return getAllByProperty(url, "nombre", nombre);
 }
+
+const getAllByProperty = (url, property, valor) => {
+    return API.get(`${url}?${property}_like=${encodeURIComponent(valor)}&_sort=nombre,id`);
+}
+
+const getUsuario = (email, password) => {
+    return API.get(`usuarios?email=${email}&password=${password}`);
+}
+
 const save = (url, values) => {
 
     if (values.id) {
@@ -47,4 +56,4 @@ const save = (url, values) => {
     return API.post(url, values);
 }
 
-export { remove, save, get, getAll, getAllByNombre, getAllPaginated };
+export { remove, save, get, getAll, getAllByNombre, getAllPaginated, getAllByProperty, getUsuario };
