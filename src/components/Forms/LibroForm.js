@@ -6,8 +6,8 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import { useEffect, useState } from "react";
 import { getAll } from "../../services/apiServices";
 import { useSelector } from "react-redux";
-
-const ubicaciones = ["1-2", "2-2", "4-2", "5", "casa"];
+import { endpoints } from "../../services/apiServices";
+import { ubicaciones } from "../../data";
 
 const LibroForm = () => {
     const { values, touched, errors, handleChange, handleBlur, setFieldValue, isSubmitting, isValid } = useFormikContext();
@@ -15,7 +15,7 @@ const LibroForm = () => {
     const disabled = useSelector(state => !state?.nombre)
 
     useEffect(() => {
-        getAll("autores").then(({ data }) => {
+        getAll(endpoints.autores).then(({ data }) => {
             setAutores(data);
         })
     }, []);
@@ -101,7 +101,7 @@ const LibroForm = () => {
                     disabled={disabled}
                     variant="outlined"
                     multiline
-                    rows={4}
+                    rows={12}
                 />
             </Grid>
 

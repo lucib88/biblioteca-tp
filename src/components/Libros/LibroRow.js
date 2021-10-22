@@ -3,6 +3,7 @@ import { Edit } from '@material-ui/icons';
 import { IconButton } from '@material-ui/core'
 import { Link } from 'react-router-dom';
 import IconButtonRemove from '../common/IconButtonRemove';
+import { getRouteId, routes } from '../../data';
 
 export const columnas = ["NOMBRE", "AUTOR", "UBICACION"];
 
@@ -21,7 +22,7 @@ const LibroRow = ({ libro, handleDelete, disabled = false }) => {
         <TableCell>{ubicacion}</TableCell>
         <TableCell>
             <>
-                <IconButton aria-label="Editar" color="primary" component={Link} to={`/libros/${id}`}>
+                <IconButton aria-label="Editar" color="primary" component={Link} to={getRouteId(routes.libro, id)}>
                     <Edit fontSize="small" />
                 </IconButton>
                 {!disabled &&

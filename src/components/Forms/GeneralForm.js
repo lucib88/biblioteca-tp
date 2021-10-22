@@ -7,15 +7,15 @@ import useGet from "../../hooks/useGet";
 import { Alert } from "@material-ui/lab";
 import { useSelector } from "react-redux";
 
-const GeneralForm = ({ children, url, goBackUrl, emptyValues, validationSchema }) => {
+const GeneralForm = ({ children, url, goBackUrl, emptyValues, validationSchema, showDisabled = true }) => {
     const history = useHistory();
     const { id } = useParams();
     const { data, loading, error } = useGet(url, id, emptyValues);
     const { message, handleClose, openMessage } = useSnackbar(error);
-    const disabled = useSelector(state => !state?.nombre)
+    const disabled = useSelector(state => !state?.nombre) && showDisabled
 
     const handleCreate = (values, { setSubmitting }) => {
-        save(url, values)
+        save(url, { ...values })
             .then(() => {
                 history.push(goBackUrl);
             })
@@ -41,6 +41,8 @@ const GeneralForm = ({ children, url, goBackUrl, emptyValues, validationSchema }
                 initialValues={initialValues}
                 validationSchema={validationSchema}
                 enableReinitialize={true}
+                validateOnChange={false}
+                validateOnBlur={true}
                 onSubmit={handleCreate}
             >
                 <Form autoComplete="off">{children}</Form>

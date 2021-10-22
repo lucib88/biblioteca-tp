@@ -7,7 +7,8 @@ export const initialState = {
     loading: true,
     error: false,
     data: null,
-    total: 0
+    total: 0,
+    reload: false
 };
 
 export const searchReducer = (state = initialState, action) => {
@@ -18,6 +19,7 @@ export const searchReducer = (state = initialState, action) => {
                 page: 0,
                 loading: false,
                 error: false,
+                reload: !state.reload,
                 params: action.payload,
             };
         case ACTIONS.SET_ROW_PER_PAGE:
@@ -25,6 +27,11 @@ export const searchReducer = (state = initialState, action) => {
                 ...state,
                 rowsPerPage: action.payload,
                 page: 0,
+            };
+        case ACTIONS.RELOAD:
+            return {
+                ...state,
+                reload: !state.reload
             };
         case ACTIONS.SET_PAGE:
             return {

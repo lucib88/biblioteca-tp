@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import { useStyles } from "./styles"
 import { useTheme } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
+import { routes } from '../../data';
 
 const MenuItem = ({ titulo, url, icon: Icon }) => {
     return <ListItem button>
@@ -53,19 +54,16 @@ export default function MenuItems({ handleDrawerClose, open }) {
 
 
         <List>
-            <MenuItem titulo="Libros" url="/libros" icon={MenuBookIcon} />
-            <MenuItem titulo="Autores" url="/autores" icon={EmojiPeopleIcon} />
+            <MenuItem titulo="Libros" url={routes.libros} icon={MenuBookIcon} />
+            <MenuItem titulo="Autores" url={routes.autores} icon={EmojiPeopleIcon} />
 
             {usuarioLogeado?.nombre &&
-                <MenuItem titulo="Cerrar sesión" url="/usuarios/logout" icon={AccountBoxIcon} />
+                <MenuItem titulo="Cerrar sesión" url={routes.logout} icon={AccountBoxIcon} />
             }
 
             {!usuarioLogeado?.nombre &&
-                <MenuItem titulo="Iniciar sesión" url="/usuarios/login" icon={AccountBoxIcon} />
+                <MenuItem titulo="Iniciar sesión" url={routes.login} icon={AccountBoxIcon} />
             }
-
-
-
         </List>
 
 

@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import { getAllByProperty } from "../services/apiServices";
+import { getAllByProperty, endpoints } from "../services/apiServices";
 import { isSameName } from "./Libro";
 
 export const initialState = {
@@ -18,7 +18,7 @@ function validaEmail(message) {
             return true;
         }
 
-        const response = await getAllByProperty("usuarios", "email", value);
+        const response = await getAllByProperty(endpoints.usuarios, "email", value);
         const mismoUsuario = response.data.filter(usuario => isSameName(usuario.email, value));
 
         return mismoUsuario.length === 0

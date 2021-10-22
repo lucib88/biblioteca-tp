@@ -3,9 +3,10 @@ import { TableSearch } from "../../components/Table"
 import { AlertMessage } from "../../components/common"
 import { AutoresSearch, AutorRow, columnas } from "../../components/Autores";
 import { useSelector } from "react-redux";
+import { endpoints } from "../../services/apiServices";
 
 export default function Autores() {
-    const { data: autores, total, loading, error, page, rowsPerPage, dispatch } = useSearch({ url: "autores" });
+    const { data: autores, total, loading, error, page, rowsPerPage, dispatch } = useSearch({ url: endpoints.autores });
     const disabled = useSelector(state => !state?.nombre)
 
     return (

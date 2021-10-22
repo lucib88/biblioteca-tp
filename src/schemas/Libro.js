@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import { getAllByNombre } from "../services/apiServices";
+import { getAllByNombre, endpoints } from "../services/apiServices";
 
 export const initialState = {
     id: '',
@@ -24,10 +24,8 @@ function validaLibro(message) {
             return true;
         }
 
-        const response = await getAllByNombre("libros", value);
+        const response = await getAllByNombre(endpoints.libros, value);
         const mismoLibro = response.data.filter(libro => isSameName(libro.nombre, value) && autor.id === libro.autor.id && id !== libro.id);
-
-        console.log(response.data, mismoLibro, mismoLibro.length);
 
         return mismoLibro.length === 0
     });

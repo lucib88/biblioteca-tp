@@ -1,4 +1,13 @@
 import { API } from "../API.js";
+import bcrypt from 'bcryptjs'
+
+const salt = bcrypt.genSaltSync(10)
+
+export const endpoints = {
+    libros: "libros",
+    usuarios: "usuarios",
+    autores: "autores"
+}
 
 const nombreParametros = {
     nombre: "nombre_like",
@@ -26,9 +35,11 @@ const get = (url, id) => {
     return API.get(`${url}/${id}`);
 }
 
-const getAllPaginated = (url, params, page, rowsPerPage) => {
+const getAllPaginated = (url, params, page, rowsPerPage, token) => {
     const urlCompleta = getUrl(url, params, page, rowsPerPage);
-    return API.get(urlCompleta);
+    return API.get(urlCompleta, {
+        cancelToken: token
+    });
 }
 
 const getAll = (url) => {
@@ -43,11 +54,25 @@ const getAllByProperty = (url, property, valor) => {
     return API.get(`${url}?${property}_like=${encodeURIComponent(valor)}&_sort=nombre,id`);
 }
 
-const getUsuario = (email, password) => {
-    return API.get(`usuarios?email=${email}&password=${password}`);
+const getUsuario = async (email, password) => {
+    const { data } = await API.get(`${endpoints.usuarios}?email=${email}`);
+
+    if (data.length !== 1) {
+        return null;
+    }
+
+    if (bcrypt.compareSync(password, data[0].password)) {
+        return data[0];
+    }
+
+    return null;
 }
 
 const save = (url, values) => {
+
+    if (values.password) {
+        values.password = bcrypt.hashSync(values.password, salt)
+    }
 
     if (values.id) {
         return API.put(`${url}/${values.id}`, values);

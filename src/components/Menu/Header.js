@@ -7,19 +7,18 @@ import clsx from 'clsx';
 import { useStyles } from "./styles"
 import { useState, useEffect } from 'react';
 import { matchPath, useLocation } from 'react-router';
+import { routes } from "../../data";
 
 const titulos = {
-  "/libros": "Buscar libros",
-  "/libros/add": "Agregar libro",
-  "/autores": "Buscar autor",
-  "/autores/add": "Agregar autor",
-  "/libros/id": "Editar libro",
-  "/autores/id": "Editar autor",
-  "/usuarios/login": "Iniciar sesión",
-  "/usuarios/logout": "Iniciar sesión",
-  "/usuarios/login/new": "Iniciar sesión",
-  "/usuarios/add": "Registrarse",
-  "/": "Buscar libros"
+  [routes.libros]: "Buscar libros",
+  [routes.autores]: "Buscar autor",
+  [routes.libro]: " libro",
+  [routes.autor]: " autor",
+  [routes.login]: "Iniciar sesión",
+  [routes.logout]: "Iniciar sesión",
+  [routes.loginNew]: "Iniciar sesión",
+  [routes.registrarse]: "usuario",
+  [routes.home]: "Buscar libros"
 }
 
 export default function Header({ handleDrawerOpen, open }) {
@@ -30,8 +29,18 @@ export default function Header({ handleDrawerOpen, open }) {
   useEffect(() => {
     const pathName = location.pathname;
     const id = matchPath(pathName, { path: "/:nombre/:id" })?.params?.id;
-    const path = id !== 'add' && id !== 'login' && id !== 'logout' ? pathName.replace(id, 'id') : pathName;
-    setTitulo(titulos[path])
+
+    let prefijo = "";
+    let path = pathName;
+
+    if (id === 'add') {
+      prefijo = "Agregar ";
+      path = pathName.replace(id, ':id')
+    } else if (id && id !== 'new') {
+      prefijo = "Editar "
+      path = pathName.replace(id, ':id')
+    }
+    setTitulo(prefijo + titulos[path])
 
   }, [location]);
 

@@ -5,16 +5,19 @@ import { Snackbar, AlertMessage } from "../../components/common"
 import { LibrosSearch, LibroRow, columnas } from "../../components/Libros";
 import { remove } from '../../services/apiServices';
 import { useSelector } from 'react-redux';
+import { endpoints } from "../../services/apiServices";
+import { ACTIONS } from '../../actions/search';
 
 export default function Libros() {
-    const { data: libros, total, loading, error, page, rowsPerPage, getData, dispatch } = useSearch({ url: "libros" });
+    const { data: libros, total, loading, error, page, rowsPerPage, dispatch } = useSearch({ url: endpoints.libros });
     const { message, handleClose, openMessage } = useSnackbar(error);
     const disabled = useSelector(state => !state?.nombre)
 
     const handleDelete = (libro) => {
-        remove('libros', libro.id).then(response => {
+        remove(endpoints.libros, libro.id).then(response => {
             openMessage("Libro borrado exitosamente", SEVERITY.SUCCESS);
-            getData();
+            dispatch({ type: ACTIONS.RELOAD });
+
         }).catch(err => {
             openMessage("No se pudo borrar el libro", SEVERITY.ERROR);
         });

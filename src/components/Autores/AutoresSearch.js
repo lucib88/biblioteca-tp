@@ -4,6 +4,7 @@ import { TextField, CardContent, Grid, Button, CircularProgress } from '@materia
 import { ACTIONS } from "../../actions/search"
 import { Add, Search } from '@material-ui/icons';
 import { Link } from "react-router-dom";
+import { getRouteId, routes } from '../../data';
 
 export const emptyParametros = {
     nombre: '',
@@ -58,7 +59,7 @@ const AutoresSearch = ({ dispatch, loading = false, disabled = false }) => {
 
                         {!disabled && <Button
                             component={Link}
-                            to="/autores/add"
+                            to={getRouteId(routes.autor, "add")}
                             color='primary'
                             size='large'
                             style={{ marginLeft: 5 }}

@@ -4,14 +4,15 @@ import { AlertMessage } from "../../components/common";
 import LoginForm from "../../components/Forms/LoginForm";
 import { signOut } from '../../actions/logged';
 import { useDispatch } from "react-redux";
+import { routes } from "../../data";
 
 const Login = () => {
     const location = useLocation();
-    const registered = location.pathname === '/usuarios/login/new';
+    const registered = location.pathname === routes.loginNew;
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (location.pathname === '/usuarios/logout') {
+        if (location.pathname === routes.logout) {
             dispatch(signOut())
         }
     }, [location, dispatch]);

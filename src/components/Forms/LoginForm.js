@@ -8,24 +8,23 @@ import { Link } from "react-router-dom";
 import { getUsuario } from "../../services/apiServices";
 import { AlertMessage } from "../common";
 import { useHistory } from 'react-router';
+import { getRouteId, routes } from "../../data";
 
 const LoginForm = () => {
     const [error, setError] = useState(false);
     const dispatch = useDispatch()
     const history = useHistory();
 
-    const handleSubmit = (values, { resetForm }) => {
-        getUsuario(values.email, values.password).then(({ data }) => {
-            if (data && data.length > 0) {
-                dispatch(signIn(data[0]))
-                history.push("/libros")
-            } else {
-                resetForm();
-                setError(true);
-            }
-        }).catch(error => {
+    const handleSubmit = async (values, { resetForm }) => {
+        const data = await getUsuario(values.email, values.password);
+        if (data) {
+            dispatch(signIn(data))
+            history.push("/libros")
+        } else {
+            resetForm();
+            setError(true);
+        }
 
-        })
     }
 
     const formik = useFormik({
@@ -86,7 +85,7 @@ const LoginForm = () => {
                             size="large"
                             type="submit"
                             component={Link}
-                            to="/usuarios/add"
+                            to={getRouteId(routes.registrarse, 'add')}
                         >
                             Registrarse
                         </Button>
